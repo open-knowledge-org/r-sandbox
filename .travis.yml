@@ -1,0 +1,15 @@
+language: r
+sudo: false
+before_install:
+  - tlmgr install index
+cache:
+  directories:
+    - $TRAVIS_BUILD_DIR/packrat/src
+    - $TRAVIS_BUILD_DIR/packrat/lib
+  packages: true
+r_packages:
+  - ggplot2
+  - Rcmdr
+  - datasets
+  - nortest
+  - knitr
