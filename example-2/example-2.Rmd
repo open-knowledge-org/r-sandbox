@@ -1,0 +1,583 @@
+---
+title: "Example 2"
+author: "Eduardo F. Mioto de O dos Santos"
+date: "4 de julho de 2017"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+
+ece <- read.csv("example2.csv")
+
+source('multiplot.R')
+```
+
+```{r include, echo=FALSE, results='hide',message=FALSE}
+library(ggplot2)
+library(Rcmdr)
+library(datasets)
+library(nortest)
+library(knitr)
+
+```
+
+## Outliers
+
+COUPLING_BETWEEN_OBJECTS
+```{r echo = FALSE}
+  variable <- ece$COUPLING_BETWEEN_OBJECTS
+  deviation	<- sd(variable)
+  limSup = (deviation*3) + mean(variable) 
+  limInf = mean(variable) - (deviation*3);  
+  outliers <- which(variable > limSup | variable < limInf)
+  eceClean <- subset(ece, ece$COUPLING_BETWEEN_OBJECTS < limSup)
+  eceClean <- subset(ece, ece$COUPLING_BETWEEN_OBJECTS > limInf)
+  
+  medium <- matrix(c(deviation*3, mean(variable), limInf, limSup, length(outliers)),	ncol=5)
+  colnames(medium) <- c('3sigma', 'Média', 'Lim Inferior', 'Lim Superior', 'Nro Outliers')
+  rownames(medium) <- c('')
+  medium.table 	<- as.table(medium)
+  medium
+```
+
+DEPTH_INHERITANCE
+```{r echo = FALSE }
+  variable <- ece$DEPTH_INHERITANCE
+  deviation	<- sd(variable)
+  limSup = (deviation*3) + mean(variable) 
+  limInf = mean(variable) - (deviation*3);  
+  outliers <- which(variable > limSup | variable < limInf)
+  eceClean <- subset(eceClean, DEPTH_INHERITANCE < limSup)
+  eceClean <- subset(eceClean, DEPTH_INHERITANCE > limInf)
+  
+  medium <- matrix(c(deviation*3, mean(variable), limInf, limSup, length(outliers)),	ncol=5)
+  colnames(medium) <- c('3sigma', 'Média', 'Lim Inferior', 'Lim Superior', 'Nro Outliers')
+  rownames(medium) <- c('')
+  medium.table 	<- as.table(medium)
+  medium
+```
+
+LACK_OF_COHESION_OF_METHODS
+```{r echo = FALSE }
+  variable <- ece$LACK_OF_COHESION_OF_METHODS
+  deviation	<- sd(variable)
+  limSup = (deviation*3) + mean(variable) 
+  limInf = mean(variable) - (deviation*3);  
+  outliers <- which(variable > limSup | variable < limInf)
+  eceClean <- subset(eceClean, LACK_OF_COHESION_OF_METHODS < limSup)
+  eceClean <- subset(eceClean, LACK_OF_COHESION_OF_METHODS > limInf)
+  
+  medium <- matrix(c(deviation*3, mean(variable), limInf, limSup, length(outliers)),	ncol=5)
+  colnames(medium) <- c('3sigma', 'Média', 'Lim Inferior', 'Lim Superior', 'Nro Outliers')
+  rownames(medium) <- c('')
+  medium.table 	<- as.table(medium)
+  medium
+```
+
+
+FAN_IN
+```{r echo = FALSE }
+  variable <- ece$FAN_IN
+  deviation	<- sd(variable)
+  limSup = (deviation*3) + mean(variable) 
+  limInf = mean(variable) - (deviation*3);  
+  outliers <- which(variable > limSup | variable < limInf)
+  eceClean <- subset(eceClean, FAN_IN < limSup)
+  eceClean <- subset(eceClean, FAN_IN > limInf)
+  
+  medium <- matrix(c(deviation*3, mean(variable), limInf, limSup, length(outliers)),	ncol=5)
+  colnames(medium) <- c('3sigma', 'Média', 'Lim Inferior', 'Lim Superior', 'Nro Outliers')
+  rownames(medium) <- c('')
+  medium.table 	<- as.table(medium)
+  medium
+```
+
+RESPONSE_FOR_CLASS
+```{r echo = FALSE }
+  variable <- ece$RESPONSE_FOR_CLASS
+  deviation	<- sd(variable)
+  limSup = (deviation*3) + mean(variable) 
+  limInf = mean(variable) - (deviation*3);  
+  outliers <- which(variable > limSup | variable < limInf)
+  eceClean <- subset(eceClean, RESPONSE_FOR_CLASS < limSup)
+  eceClean <- subset(eceClean, RESPONSE_FOR_CLASS > limInf)
+  
+  medium <- matrix(c(deviation*3, mean(variable), limInf, limSup, length(outliers)),	ncol=5)
+  colnames(medium) <- c('3sigma', 'Média', 'Lim Inferior', 'Lim Superior', 'Nro Outliers')
+  rownames(medium) <- c('')
+  medium.table 	<- as.table(medium)
+  medium
+```
+
+WEIGHTED_METHODS_PER_CLASS
+```{r echo = FALSE }
+  variable <- ece$WEIGHTED_METHODS_PER_CLASS
+  deviation	<- sd(variable)
+  limSup = (deviation*3) + mean(variable) 
+  limInf = mean(variable) - (deviation*3);  
+  outliers <- which(variable > limSup | variable < limInf)
+  eceClean <- subset(eceClean, WEIGHTED_METHODS_PER_CLASS < limSup)
+  eceClean <- subset(eceClean, WEIGHTED_METHODS_PER_CLASS > limInf)
+  
+  medium <- matrix(c(deviation*3, mean(variable), limInf, limSup, length(outliers)),	ncol=5)
+  colnames(medium) <- c('3sigma', 'Média', 'Lim Inferior', 'Lim Superior', 'Nro Outliers')
+  rownames(medium) <- c('')
+  medium.table 	<- as.table(medium)
+  medium
+```
+
+sumLOC_TOTAL
+```{r echo = FALSE }
+  variable <- ece$sumLOC_TOTAL
+  deviation	<- sd(variable)
+  limSup = (deviation*3) + mean(variable) 
+  limInf = mean(variable) - (deviation*3);  
+  outliers <- which(variable > limSup | variable < limInf)
+  eceClean <- subset(eceClean, sumLOC_TOTAL < limSup)
+  eceClean <- subset(eceClean, sumLOC_TOTAL > limInf)
+  
+  medium <- matrix(c(deviation*3, mean(variable), limInf, limSup, length(outliers)),	ncol=5)
+  colnames(medium) <- c('3sigma', 'Média', 'Lim Inferior', 'Lim Superior', 'Nro Outliers')
+  rownames(medium) <- c('')
+  medium.table 	<- as.table(medium)
+  medium
+```
+
+
+NUMDEFECTS
+```{r echo = FALSE }
+  variable <- ece$NUMDEFECTS
+  deviation	<- sd(variable)
+  limSup = (deviation*3) + mean(variable) 
+  limInf = mean(variable) - (deviation*3);  
+  outliers <- which(variable > limSup | variable < limInf)
+  eceClean <- subset(eceClean, NUMDEFECTS < limSup)
+  eceClean <- subset(eceClean, NUMDEFECTS > limInf)
+  
+  medium <- matrix(c(deviation*3, mean(variable), limInf, limSup, length(outliers)),	ncol=5)
+  colnames(medium) <- c('3 Sigma;', 'Média', 'Lim Inferior', 'Lim Superior', 'Nro Outliers')
+  rownames(medium) <- c('')
+  medium.table 	<- as.table(medium)
+  medium
+```
+
+### A 1.1) Correlações - Spearman
+
+```{r}
+cor(eceClean[unlist(lapply(eceClean, is.numeric))], method = "spearman")
+```
+
+### A 1.2) Correlações - Pearson
+
+```{r}
+cor(eceClean[unlist(lapply(eceClean, is.numeric))], method = "pearson")
+```
+
+### B)  
+
+```{r}
+chisq.test(eceClean$DEPTH_INHERITANCE, eceClean$NUMDEFECTS, correct=FALSE)  
+```
+### C)  
+
+```{r}
+
+kruskal.test(list(eceClean$NUMDEFECTS, eceClean$LACK_OF_COHESION_OF_METHODS, eceClean$DEPTH_INHERITANCE))
+kruskal.test(eceClean$NUMDEFECTS ~ eceClean$LACK_OF_COHESION_OF_METHODS, data = eceClean) 
+kruskal.test(eceClean$NUMDEFECTS ~ eceClean$DEPTH_INHERITANCE, data = eceClean) 
+kruskal.test(eceClean$LACK_OF_COHESION_OF_METHODS ~ eceClean$DEPTH_INHERITANCE, data = eceClean) 
+
+```
+### D)  
+
+
+```{r echo = FALSE}
+# Fit our regression model
+mod <- lm(eceClean$NUMDEFECTS ~ eceClean$sumLOC_TOTAL + eceClean$WEIGHTED_METHODS_PER_CLASS, 
+          data=eceClean)
+summary(mod) # show regression coefficients table
+
+```
+
+## Anexos D) Regressão Linear
+
+* Correlações (Spearman): 
+* DEPTH_INHERITANCE                 <0.9342193> FAN_IN
+* COUPLING_BETWEEN_OBJECTS          <0.8151521> sumLOC_TOTAL
+* DEPTH_INHERITANCE                 <0.7348442> RESPONSE_FOR_CLASS
+* FAN_IN                            <0.7208096> RESPONSE_FOR_CLASS
+* WEIGHTED_METHODS_PER_CLASS        <0.6258510> RESPONSE_FOR_CLASS
+
+```{r echo = FALSE}
+# Fit our regression model
+mod <- lm(eceClean$DEPTH_INHERITANCE ~ eceClean$FAN_IN, # regression formula
+              data=eceClean) # data set
+# Summarize and print the results
+summary(mod) # show regression coefficients table
+```
+
+- DEPTH_INHERITANCE <0.9342193> FAN_IN
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$DEPTH_INHERITANCE, y=ece$FAN_IN)) +
+geom_point() +
+ggtitle("Original") +
+xlab("DEPTH_INHERITANCE") +
+ylab("FAN_IN") +
+geom_smooth(method='lm')
+
+p2 <- ggplot(eceClean, aes(x=eceClean$DEPTH_INHERITANCE, y=eceClean$FAN_IN)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("DEPTH_INHERITANCE") +
+ylab("FAN_IN") +
+geom_smooth(method='lm')
+
+multiplot(p1, p2, cols=2)
+```
+
+
+- COUPLING_BETWEEN_OBJECTS <0.8151521> sumLOC_TOTAL
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$COUPLING_BETWEEN_OBJECTS, y=ece$sumLOC_TOTAL)) +
+geom_point() +
+ggtitle("Original") +
+xlab("COUPLING_BETWEEN_OBJECTS") +
+ylab("sumLOC_TOTAL") +
+geom_smooth(method=lm)
+ 
+p2 <- ggplot(eceClean, aes(x=eceClean$COUPLING_BETWEEN_OBJECTS, y=eceClean$sumLOC_TOTAL)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("COUPLING_BETWEEN_OBJECTS") +
+ylab("sumLOC_TOTAL") +
+geom_smooth(method=lm)
+
+multiplot(p1, p2, cols=2)
+```
+
+
+- DEPTH_INHERITANCE <0.7348442> RESPONSE_FOR_CLASS
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$DEPTH_INHERITANCE, y=ece$RESPONSE_FOR_CLASS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("COUPLING_BETWEEN_OBJECTS") +
+ylab("sumLOC_TOTAL") +
+geom_smooth(method=lm)
+ 
+p2 <- ggplot(eceClean, aes(x=eceClean$DEPTH_INHERITANCE, y=eceClean$RESPONSE_FOR_CLASS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("COUPLING_BETWEEN_OBJECTS") +
+ylab("sumLOC_TOTAL") +
+geom_smooth(method=lm)
+
+multiplot(p1, p2, cols=2)
+```
+
+
+- FAN_IN <0.7208096> RESPONSE_FOR_CLASS
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$FAN_IN, y=ece$RESPONSE_FOR_CLASS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("FAN_IN") +
+ylab("sumLOC_TOTAL") +
+geom_smooth(method=lm)
+ 
+p2 <- ggplot(eceClean, aes(x=eceClean$FAN_IN, y=eceClean$RESPONSE_FOR_CLASS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("FAN_IN") +
+ylab("sumLOC_TOTAL") +
+geom_smooth(method=lm)
+
+multiplot(p1, p2, cols=2)
+```
+
+
+- WEIGHTED_METHODS_PER_CLASS <0.6258510> RESPONSE_FOR_CLASS
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$WEIGHTED_METHODS_PER_CLASS, y=ece$RESPONSE_FOR_CLASS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("WEIGHTED_METHODS_PER_CLASS") +
+ylab("RESPONSE_FOR_CLASS") +
+geom_smooth(method=lm)
+ 
+p2 <- ggplot(eceClean, aes(x=eceClean$WEIGHTED_METHODS_PER_CLASS, y=eceClean$RESPONSE_FOR_CLASS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("WEIGHTED_METHODS_PER_CLASS") +
+ylab("RESPONSE_FOR_CLASS") +
+geom_smooth(method=lm)
+
+multiplot(p1, p2, cols=2)
+```
+
+
+### Anexo Análise Visual
+
+```{r echo = FALSE}
+### Histograma COUPLING_BETWEEN_OBJECTS
+p1 <- ggplot(data=ece, aes(x =  ece$COUPLING_BETWEEN_OBJECTS)) +
+geom_histogram(binwidth=1, position="dodge") +
+ggtitle("Original") +
+xlab("COUPLING BETWEEN OBJECTS") +
+ylab("Quantidade")
+
+p2 <- ggplot(data=eceClean, aes(x =  eceClean$COUPLING_BETWEEN_OBJECTS)) +
+geom_histogram(binwidth=1, position="dodge") +
+ggtitle("Sem Outliers") +
+xlab("COUPLING BETWEEN OBJECTS") +
+ylab("Quantidade")
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+### Histograma LACK_OF_COHESION_OF_METHODS
+p1 <- ggplot(data=ece, aes(x =  ece$LACK_OF_COHESION_OF_METHODS)) +
+geom_histogram(binwidth=2, position="dodge") +
+ggtitle("Original") +
+xlab("LACK_OF_COHESION_OF_METHODS") +
+ylab("Quantidade")
+
+p2 <- ggplot(data=eceClean, aes(x =  eceClean$LACK_OF_COHESION_OF_METHODS)) +
+geom_histogram(binwidth=2, position="dodge") +
+ggtitle("Sem Outliers") +
+xlab("LACK_OF_COHESION_OF_METHODS") +
+ylab("Quantidade")
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+### Histograma FAN_IN
+p1 <- ggplot(data=ece, aes(x =  ece$FAN_IN)) +
+geom_histogram(binwidth=0.1, position="dodge") +
+ggtitle("Original") +
+xlab("FAN_IN") +
+ylab("Quantidade")
+
+p2 <- ggplot(data=eceClean, aes(x =  eceClean$FAN_IN)) +
+geom_histogram(binwidth=0.1, position="dodge") +
+ggtitle("Sem Outliers") +
+xlab("FAN_IN") +
+ylab("Quantidade")
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+### Histograma RESPONSE_FOR_CLASS
+p1 <- ggplot(data=ece, aes(x =  ece$RESPONSE_FOR_CLASS)) +
+geom_histogram(binwidth=5, position="dodge") +
+ggtitle("Original") +
+xlab("RESPONSE_FOR_CLASS") +
+ylab("Quantidade")
+
+p2 <- ggplot(data=eceClean, aes(x =  eceClean$RESPONSE_FOR_CLASS)) +
+geom_histogram(binwidth=4, position="dodge") +
+ggtitle("Sem Outliers") +
+xlab("RESPONSE_FOR_CLASS") +
+ylab("Quantidade")
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+### Histograma WEIGHTED_METHODS_PER_CLASS
+p1 <- ggplot(data=ece, aes(x =  ece$WEIGHTED_METHODS_PER_CLASS)) +
+geom_histogram(binwidth=2, position="dodge") +
+ggtitle("Original") +
+xlab("WEIGHTED_METHODS_PER_CLASS") +
+ylab("Quantidade")
+
+p2 <- ggplot(data=eceClean, aes(x =  eceClean$WEIGHTED_METHODS_PER_CLASS)) +
+geom_histogram(binwidth=2, position="dodge") +
+ggtitle("Sem Outliers") +
+xlab("WEIGHTED_METHODS_PER_CLASS") +
+ylab("Quantidade")
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+### Histograma Discrepância
+p1 <- ggplot(data=ece, aes(x =  ece$sumLOC_TOTAL)) +
+geom_histogram(binwidth=100, position="dodge") +
+ggtitle("Original") +
+xlab("SUM LOC Total") +
+ylab("Quantidade")
+
+p2 <- ggplot(data=eceClean, aes(x =  eceClean$sumLOC_TOTAL)) +
+geom_histogram(binwidth=100, position="dodge") +
+ggtitle("Sem Outliers") +
+xlab("SUM LOC Total") +
+ylab("Quantidade")
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+### Histograma NUMDEFECTS
+p1 <- ggplot(data=ece, aes(x =  ece$NUMDEFECTS)) +
+geom_histogram(binwidth=2, position="dodge") +
+ggtitle("Original") +
+xlab("NUMDEFECTS") +
+ylab("Quantidade")
+
+p2 <- ggplot(data=eceClean, aes(x =  eceClean$NUMDEFECTS)) +
+geom_histogram(binwidth=2, position="dodge") +
+ggtitle("Sem Outliers") +
+xlab("NUMDEFECTS") +
+ylab("Quantidade")
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$COUPLING_BETWEEN_OBJECTS, y=ece$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("COUPLING_BETWEEN_OBJECTS") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+p2 <- ggplot(eceClean, aes(x=eceClean$COUPLING_BETWEEN_OBJECTS, y=eceClean$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("COUPLING_BETWEEN_OBJECTS") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$DEPTH_INHERITANCE, y=ece$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("DEPTH_INHERITANCE") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+p2 <- ggplot(eceClean, aes(x=eceClean$DEPTH_INHERITANCE, y=eceClean$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("DEPTH_INHERITANCE") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$LACK_OF_COHESION_OF_METHODS, y=ece$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("LACK_OF_COHESION_OF_METHODS") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+p2 <- ggplot(eceClean, aes(x=eceClean$LACK_OF_COHESION_OF_METHODS, y=eceClean$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("LACK_OF_COHESION_OF_METHODS") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$FAN_IN, y=ece$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("FAN_IN") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+p2 <- ggplot(eceClean, aes(x=eceClean$FAN_IN, y=eceClean$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("FAN_IN") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$RESPONSE_FOR_CLASS, y=ece$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("RESPONSE_FOR_CLASS") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+p2 <- ggplot(eceClean, aes(x=eceClean$RESPONSE_FOR_CLASS, y=eceClean$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("RESPONSE_FOR_CLASS") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$WEIGHTED_METHODS_PER_CLASS, y=ece$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("WEIGHTED_METHODS_PER_CLASS") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+p2 <- ggplot(eceClean, aes(x=eceClean$WEIGHTED_METHODS_PER_CLASS, y=eceClean$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("WEIGHTED_METHODS_PER_CLASS") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm) 
+
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r echo = FALSE}
+p1 <- ggplot(ece, aes(x=ece$sumLOC_TOTAL, y=ece$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Original") +
+xlab("sumLOC_TOTAL") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm)
+ 
+p2 <- ggplot(eceClean, aes(x=eceClean$sumLOC_TOTAL, y=eceClean$NUMDEFECTS)) +
+geom_point() +
+ggtitle("Sem Outliers") +
+xlab("sumLOC_TOTAL") +
+ylab("NUMDEFECTS") +
+geom_smooth(method=lm)
+
+multiplot(p1, p2, cols=2)
+```
+
+### References
+- http://staff.unak.is/andy/staticanalysis0809/metrics/overview.html
+- https://www.r-bloggers.com/linear-regression-using-r/
+
