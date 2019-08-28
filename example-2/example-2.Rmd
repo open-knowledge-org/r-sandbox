@@ -6,11 +6,16 @@ output:
   html_document: default
 ---
 
+# install.packages("ggplot2", dependencies = TRUE)
+#	install.packages('Rmisc', dependencies = TRUE)
+# install.packages("gridExtra")
+
 ```{r setup, include=FALSE}
 
-ece <- read.csv("example2.csv")
+# Read CSV into R
+ece <- read.csv(file="C:/Users/<<user>>/Documents/GitHub/r-sandbox/example-2/example2.csv", header=TRUE, sep=",")
 
-source('multiplot.R')
+source('C:/Users/<<user>>/Documents/GitHub/r-sandbox/multiplot.R')
 ```
 
 ```{r include, echo=FALSE, results='hide',message=FALSE}
@@ -580,4 +585,4 @@ multiplot(p1, p2, cols=2)
 ### References
 - http://staff.unak.is/andy/staticanalysis0809/metrics/overview.html
 - https://www.r-bloggers.com/linear-regression-using-r/
-
+- http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)

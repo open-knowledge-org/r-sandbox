@@ -5,10 +5,16 @@ date: "1 de julho de 2017"
 output: html_document
 ---
 
+# install.packages("ggplot2", dependencies = TRUE)
+# install.packages('Rmisc', dependencies = TRUE)
+# install.packages("gridExtra")
+
 ```{r setup, include=FALSE}
 
-ece <- read.csv("example-dataset.csv")
+# Read CSV into R. Please change the user.
+ece <- read.csv(file="C:/Users/<<user>>/Documents/GitHub/r-sandbox/example-1/example1.csv", header=TRUE, sep=",")
 
+source('C:/Users/<<user>>/Documents/GitHub/r-sandbox/multiplot.R')
 ```
 
 ## R Include
